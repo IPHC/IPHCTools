@@ -1,0 +1,96 @@
+html
+{
+    margin:0px;
+    padding:0px;
+    min-height:100%;
+    background-color:#ffffff;
+    color:#eee;
+}
+body
+{
+    margin:0px;
+    padding:0px;
+    font-family:"Droid Sans",sans-serif;
+    -webkit-font-smoothing:antialiased;
+}
+#title
+{
+    display:block;
+    margin:40px 0px 0px 80px;
+    padding:0px;
+    line-height:1.2em;
+    font-size:40px;
+    color:#000;
+    text-shadow:0px 1px 1px rgba(51, 51, 51, 0.1);
+}
+.boxOutter      
+{
+    margin:20px 0px 40px 80px;
+    padding:16px;
+    border:1px solid #ccc;
+    border-radius:16px;
+    height:350px;
+    width:800px;
+    background-color:#eee;
+    background-image:-moz-linear-gradient(top, #fff 0%, rgba(255, 255, 255, 0) 2%);
+    box-shadow:1px 1px 1px rgba(51, 51, 51, 0.1);
+}
+.boxInner       
+{ 
+    border-radius:16px;
+    background-color:#fff;
+    color:#1a2731;
+    height:350px;
+    box-shadow:1px 1px 5px rgba(51, 51, 51, 0.10);
+}
+.legend         
+{ 
+    display:inline-block;
+    padding:0px 0px 0px 15px;
+    vertical-align:top;
+}
+.legendHeader   
+{ 
+    display:block;
+    margin:0px;
+    padding:10px 0px 0px 0px;
+    line-height:1.4em;
+    font-weight:bold;
+    font-size:28px;
+}
+.legendSubheader
+{ 
+    display:block;
+    margin:0px;
+    padding:0px;
+    line-height:1.4em;
+    font-weight:bold;
+    font-size:14px;
+}
+.legendContent  
+{ 
+    display:block;
+    margin:12px 0px 0px 20px;
+    padding:0px;
+    list-style-type:none;
+}
+.legendEntry    
+{ 
+    display:block;
+    margin:0px 0px 3px 0px;
+    line-height:1.5em;
+    font-size:18px;
+    vertical-align:middle;
+}
+.legendColorBox 
+{ 
+    display:inline-block;
+    margin:0px 6px 3px 0px;
+    width:9px;
+    height:9px;
+    border:1px solid #777;
+    border-radius:2px;
+    overflow:hidden;
+    vertical-align:middle;
+}
+

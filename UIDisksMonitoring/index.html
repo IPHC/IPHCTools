@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>UI disks space monitoring</title>
+        <script src="./tools/CSVtoArray.js"></script>
+        <script src="./tools/stringToColor.js"></script>
+        <script src="./tools/libChart/Chart.js"></script>
+        <script src="./monitorInterface.js"></script>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="./monitorInterface.css" />
+    </head>
+    <body>
+
+        <center>
+            <h1 id="title">UI disks space monitoring</h1>
+            <div id="monitorTable"></div> 
+        </center>
+
+        <iframe style="display:none;" id=monitoredFolders src="config/monitoredFolders.cfg"></iframe>
+    </body>
+</html>

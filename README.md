@@ -22,3 +22,11 @@ DPMharvester
 A tool to copy bunches of NTuples to the UIs
 - Ignore duplicated NTuples (take the most recent one)
 - Doesn't transfer already existing file (easier to relaunch if proxy expired)
+
+Dewey
+-----
+
+A tool to manage WMS-jobs 
+- Get the full status of the collections/jobs
+- Get th error when aborted
+- Resubmit failed jobs

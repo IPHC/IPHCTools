@@ -87,7 +87,7 @@ do
     # Parse the content to list what needs to be harvested #
     ########################################################
 
-    echo "[${TASKNAME}] Parsing DPM files and checking sync with local files ..." | tee $TASKNAME/log
+    echo "[${TASKNAME}] Parsing DPM files and checking sync with local files ..." | tee -a $TASKNAME/log
 
     # For each file in the list...
     for FILE in $RAWLIST
@@ -172,15 +172,15 @@ do
     NCOPY=`cat $TASKNAME/toBeHarvested.list 2>/dev/null | wc -l`
     if [[ $NCOPY != 0 ]]
     then
-        echo "[${TASKNAME}] $NCOPY files need to be harvested" | tee $TASKNAME/log
-        echo "[${TASKNAME}] Starting copies ..." | tee $TASKNAME/log
+        echo "[${TASKNAME}] $NCOPY files need to be harvested" | tee -a $TASKNAME/log
+        echo "[${TASKNAME}] Starting copies ..." | tee -a $TASKNAME/log
         for FILE in `cat $TASKNAME/toBeHarvested.list`
         do
-            echo "[$TASKNAME] Copying $FILE ... " | tee $TASKNAME/log
-            rfcp $CRAB_HOME/$TASKNAME/$FILE ./$TASKNAME/ | tee $TASKNAME/log
+            echo "[$TASKNAME] Copying $FILE ... " | tee -a $TASKNAME/log
+            rfcp $CRAB_HOME/$TASKNAME/$FILE ./$TASKNAME/ | tee -a $TASKNAME/log
         done
-        echo "[${TASKNAME}] Done." | tee $TASKNAME/log
+        echo "[${TASKNAME}] Done." | tee -a $TASKNAME/log
     else
-        echo "[${TASKNAME}] No need to do anything" | tee $TASKNAME/log
+        echo "[${TASKNAME}] No need to do anything" | tee -a $TASKNAME/log
     fi
 done

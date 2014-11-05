@@ -1,0 +1,73 @@
+#!/bin/bash
+
+###############################################################
+#                                                             #
+#  rfdirStar                                                  #
+#  - A quick and dirty wildcard for rfdir                     #
+#                                                             #
+#                                                             #
+#  Examples :                                                 #
+#                                                             #
+#  List folders in your DPM home                              #
+#  > ./rfdirStar                                              #
+#                                                             #
+#  List folders in your DPM home matching A*                  #
+#  > ./rfdirStar A*                                           #
+#                                                             #
+#  List folders in your DPM home matching                     #
+#  prodJuly-v*/TTbar/NTuples*                                 #
+#  > ./rfdir prodJuly-v*/TTbar/NTuples*                       #
+#                                                             #
+###############################################################
+
+BASE_PATH="/dpm/in2p3.fr/home/cms/phedex/store/user/$USER/"
+WILDCARD=$1
+
+if [[ $WILDCARD == "" ]]
+then
+    WILDCARD='\*'
+fi
+
+# Function to list folder that matches $1/$2, 
+# with $1 being a base folder (no wildcard)
+# and  $2 being containing wildcards
+matchingPath()
+{
+    EXPR="^"`echo $2 | sed -e 's/\\\//g' -e 's/\*/[0-9a-zA-Z_-]*/g'`"$"
+    MATCHES=`rfdir $1 | awk '{print $9}' | grep --color "$EXPR"`
+    for MATCH in $MATCHES
+    do
+        echo $1/$MATCH | sed 's|//|/|g'
+    done
+}
+
+# Split wildcard in token according to "/"
+WILDCARD=`echo $WILDCARD | sed 's/\*/\\\\\\\*/g'`
+WILDCARD_BREAKDOWN="`tr '/' ' ' <<< $WILDCARD`"
+eval set -- "$WILDCARD_BREAKDOWN"
+
+# Loop on tokens and recusively check the matching path
+MATCHING_PATHS=$BASE_PATH
+while true
+do
+    # If current token is empty, stop the loop
+    if [[ $1 == "" ]]
+    then 
+        break; 
+    fi
+
+    # Loop on all the current matching path, check extended path that match wildcard of $1
+    NEW_MATCHING_PATHS=""
+    for MATCHING_PATH in $MATCHING_PATHS
+    do
+        NEW_MATCHING_PATHS="$NEW_MATCHING_PATHS `matchingPath $MATCHING_PATH $1`"
+    done
+    MATCHING_PATHS=$NEW_MATCHING_PATHS
+
+    # Move to next token
+    shift;
+done
+
+# Print all matching paths
+echo $MATCHING_PATHS | tr ' ' '\n'
+

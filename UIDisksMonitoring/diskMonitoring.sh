@@ -13,6 +13,7 @@ do
 
     du -s --block-size=G $DISK_PATH/* > tmp 2>/dev/null
 
+    mkdir -p data/tmp/
     rm -f data/tmp/${DISK_TAG}.usage
     TOTAL_USAGE=0
     while read line
@@ -37,7 +38,7 @@ rm -f tmp
 DATE=`date +%Y_%m_%d_%H:%M:%S`
 mv data/tmp/ data/historyUse/$DATE/
 rm data/currentUse
-ln -s data/historyUse/$DATE/ data/currentUse
+ln -s historyUse/$DATE/ data/currentUse
 
 while read line
 do

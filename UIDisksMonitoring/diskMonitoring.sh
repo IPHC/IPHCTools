@@ -28,6 +28,10 @@ do
     done < tmp
 
     UNKNOWN_SIZE=$((TOTAL_SIZE - FREE_SIZE - TOTAL_USAGE))
+    if [[ $UNKNOWN_SIZE -lt 0 ]]
+    then
+        UNKNOWN_SIZE="0"
+    fi
 
     echo "unknown,$UNKNOWN_SIZE" >> data/tmp/${DISK_TAG}.usage
     echo "free,$FREE_SIZE"       >> data/tmp/${DISK_TAG}.usage
@@ -58,6 +62,10 @@ do
         DATE=`echo $HISTORY | tr '_' ' ' | awk '{print $1 "/" $2 "/" $3 " " $4}'`
         SHORT_DATE=`date --date="$DATE" +%b%d`
         FREE=`cat data/historyUse/$HISTORY/$DISK_TAG.usage | grep free | tr ',' ' ' | awk '{print $2}'`
+        if [[ $FREE == "" ]]
+        then
+            FREE="0"
+        fi
         echo "$SHORT_DATE,$FREE" >> data/historySummary/$DISK_TAG.history
     done
 

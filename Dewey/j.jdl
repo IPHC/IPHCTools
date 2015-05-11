@@ -1,7 +1,7 @@
 Executable = "/bin/sh";
-Arguments = "wmsjob.sh";
-StdOutput = "stdout.out";
-StdError = "stderr.err";
-InputSandbox={"wmsjob.sh","prod_GENtoRECO.py"};
+Arguments = "WMSjob.sh";
+StdOutput = "std.out";
+StdError = "std.err";
+InputSandbox={"WMSjob.sh"};
 OutputSandbox = { "stdout.out", "stderr.err" };
 Requirements=other.GlueCEUniqueID=="sbgce2.in2p3.fr:8443/cream-pbs-cms"
